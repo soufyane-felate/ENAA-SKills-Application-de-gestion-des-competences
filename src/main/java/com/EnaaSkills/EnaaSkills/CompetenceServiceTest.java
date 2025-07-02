@@ -1,36 +1,24 @@
-//package com.EnaaSkills.EnaaSkills;
+package com.EnaaSkills.EnaaSkills;
+
+import com.EnaaSkills.EnaaSkills.Models.Competence;
+import com.EnaaSkills.EnaaSkills.Repository.CompetenceRepository;
+import com.EnaaSkills.EnaaSkills.Services.CompetenceService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+
+//@SpringBootTest
+class CompetenceServiceTest {
+//    @Autowired
+//    private CompetenceService service;
 //
-//import com.EnaaSkills.EnaaSkills.Models.SousCompetence;
-//import com.EnaaSkills.EnaaSkills.Repository.CompetenceRepository;
-//import com.EnaaSkills.EnaaSkills.Repository.SousCompetenceRepository;
-//import com.EnaaSkills.EnaaSkills.Services.CompetenceService;
-//
-//
-//
-//import java.util.Optional;
-//
-//@ExtendWith(MockitoExtension.class)
-//class CompetenceServiceTest {
-//    @Mock
-//    CompetenceRepository compRepo;
-//    @Mock
-//    SousCompetenceRepository sousRepo;
-//    @InjectMocks
-//    CompetenceService service;
+//    @MockBean
+//    private CompetenceRepository repo;
 //
 //    @Test
-//    void testCreateAvecSous() {
-//        when(compRepo.save(any())).thenAnswer(i -> i.getArgument(0));
-//        Competence c = service.createAvecSous(List.of("A","B"), "Comp");
-//        assertThat(c.getSousCompetences()).hasSize(2);
-//        assertThat(c.isValide()).isFalse();
+//    void testCreateCompetence() {
+//        Competence c = new Competence();
+//        c.setName("Java");
+//        Mockito.when(repo.save(Mockito.any())).thenReturn(c);
+//        Assertions.assertEquals("Java", service.createCompetence(c).getName());
 //    }
-//
-//    @Test void testMiseAJourValidation() {
-//        SousCompetence sc = new SousCompetence(); sc.setId(1L); sc.setValide(false);
-//        when(sousRepo.findById(1L)).thenReturn(Optional.of(sc));
-//        service.miseAJourValidation(1L, true);
-//        assertThat(sc.isValide()).isTrue();
-//    }
-//}
-//
+}

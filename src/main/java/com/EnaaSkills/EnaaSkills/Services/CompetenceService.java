@@ -1,56 +1,49 @@
 package com.EnaaSkills.EnaaSkills.Services;
 
 import com.EnaaSkills.EnaaSkills.Models.Competence;
-import com.EnaaSkills.EnaaSkills.Models.SousCompetence;
+import com.EnaaSkills.EnaaSkills.Models.SubCompetence;
 import com.EnaaSkills.EnaaSkills.Repository.CompetenceRepository;
-import com.EnaaSkills.EnaaSkills.Repository.SousCompetenceRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
-@Transactional
 public class CompetenceService {
     @Autowired
-    private CompetenceRepository compRepo;
-    @Autowired private SousCompetenceRepository sousRepo;
+    private CompetenceRepository competenceRepository;
 
-    public Competence createAvecSous(List<String> nomSCs, String nomCompetence) {
-        Competence c = new Competence();
-        c.setNom(nomCompetence);
-        for (String nomSC : nomSCs) {
-            SousCompetence sc = new SousCompetence();
-            sc.setNom(nomSC);
-            sc.setCompetence(c);
-            c.getSousCompetences().add(sc);
+//    public Competence createCompetence(Competence competence) {
+//        return competenceRepository.save(competence);
+//    }
+    public Competence createCompetence(Competence competence) {
+        for (SubCompetence sc : competence.getSubCompetences()) {
+            sc.setCompetence(competence );
         }
-        return compRepo.save(c);
+        return competenceRepository.save(competence);
+    }
+    public Competence getCompetenceById(Long id) {
+        return competenceRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Competence not found : " + id
+                ));
     }
 
-    public SousCompetence miseAJourValidation(Long scId, boolean valide) {
-        SousCompetence sc = sousRepo.findById(scId)
-                .orElseThrow(() -> new NoSuchElementException("SousComp non trouvée"));
-        sc.setValide(valide);
-        return sousRepo.save(sc);
+    public List<Competence> getAllCompetences() {
+        return competenceRepository.findAll();
     }
 
-    public Competence majCompetence(Long compId, String nouveauNom, List<String> newSCs) {
-        Competence c = compRepo.findById(compId)
-                .orElseThrow();
-        c.setNom(nouveauNom);
-        c.getSousCompetences().clear();
-        for (String nomSC : newSCs) {
-            SousCompetence sc = new SousCompetence();
-            sc.setNom(nomSC);
-            sc.setCompetence(c);
-            c.getSousCompetences().add(sc);
-        }
-        return compRepo.save(c);
+    public Competence updateCompetence(Long id, Competence updated) {
+        return competenceRepository.findById(id).map(c -> {
+            c.setName(updated.getName());
+            return competenceRepository.save(c);
+        }).orElseThrow();
     }
 
-    public void supprimerCompetence(Long compId) { compRepo.deleteById(compId); }
-    public List<Competence> listerToutes() { return compRepo.findAll(); }
+
+    public void deleteCompetence(Long id) {
+        competenceRepository.deleteById(id);
+    }
 }

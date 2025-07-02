@@ -1,25 +1,24 @@
 package com.EnaaSkills.EnaaSkills.Models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Competence {
+@Entity
+public class SubCompetence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    @JsonIgnore
-    @OneToMany(mappedBy = "competence", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<SubCompetence> subCompetences = new ArrayList<>();
+    private boolean validated;
+
+    @ManyToOne
+    @JoinColumn(name = "competence_id")
+    private Competence competence;
+
 }

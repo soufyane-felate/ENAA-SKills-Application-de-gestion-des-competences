@@ -1,24 +1,20 @@
 package com.EnaaSkills.EnaaSkills.Dto;
 
-
-import jakarta.validation.constraints.NotBlank;
+import com.EnaaSkills.EnaaSkills.Models.Competence;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class SousCompetenceDTO {
     private Long id;
+    private String name;
+    private boolean validated;
 
-    @NotBlank(message = "Le nom de la sous-compétence est obligatoire")
-    private String nom;
-
-    private String description;
     private Long competenceId;
-    private LocalDateTime dateCreation;
-
-    }
+    private String competenceName;
+}
