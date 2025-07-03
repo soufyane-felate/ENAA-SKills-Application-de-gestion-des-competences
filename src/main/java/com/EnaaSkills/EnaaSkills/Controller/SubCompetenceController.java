@@ -1,7 +1,5 @@
 package com.EnaaSkills.EnaaSkills.Controller;
 
-
-
 import com.EnaaSkills.EnaaSkills.Dto.SousCompetenceDTO;
 import com.EnaaSkills.EnaaSkills.Models.SubCompetence;
 import com.EnaaSkills.EnaaSkills.Services.SousCompetenceService;
@@ -22,6 +20,7 @@ public class SubCompetenceController {
     public SubCompetence createSousCompetence(@RequestBody SousCompetenceDTO sousCompetenceDTO) {
         return sousCompetenceService.createSousCompetence(sousCompetenceDTO.getCompetenceId(), sousCompetenceDTO);
     }
+
     @Operation(summary = "get all sub-skill")
     @GetMapping("/{id}")
     public SubCompetence getSousCompetenceById(@PathVariable Long id) {

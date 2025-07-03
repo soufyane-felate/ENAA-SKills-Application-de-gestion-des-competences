@@ -19,6 +19,11 @@ public class CompetenceController {
         return competenceService.getAllCompetences();
     }
 
+    @GetMapping("/{id}")
+    public Competence getCompetencebyId(Long id){
+        return competenceService.getCompetenceById(id);
+
+    }
     @PostMapping
     public Competence create(@RequestBody Competence c) {
         return competenceService.createCompetence(c);

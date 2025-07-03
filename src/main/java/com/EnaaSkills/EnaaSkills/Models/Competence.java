@@ -17,6 +17,8 @@ public class Competence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String description;
+    //private boolean validated;
 
     private String name;
     @JsonIgnore
