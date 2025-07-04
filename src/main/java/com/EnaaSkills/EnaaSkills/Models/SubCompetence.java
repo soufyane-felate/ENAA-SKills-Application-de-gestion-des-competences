@@ -20,5 +20,4 @@ public class SubCompetence {
     @ManyToOne
     @JoinColumn(name = "competence_id")
     private Competence competence;
-
 }

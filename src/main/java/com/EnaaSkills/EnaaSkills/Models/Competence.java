@@ -18,10 +18,10 @@ public class Competence {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-    //private boolean validated;
-
+    private boolean validated;
     private String name;
-    @JsonIgnore
+
+  @JsonIgnore
     @OneToMany(mappedBy = "competence", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SubCompetence> subCompetences = new ArrayList<>();
 }

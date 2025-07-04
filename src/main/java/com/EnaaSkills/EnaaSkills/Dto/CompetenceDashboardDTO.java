@@ -1,17 +1,10 @@
 package com.EnaaSkills.EnaaSkills.Dto;
 
 
-import java.util.List;
+import lombok.Data;
 
-//public class CompetenceDashboardDTO {
-//    private ApprenantDTO apprenant;
-//    private List<CompetenceStatistiquesDTO> competences;
-//    private int totalCompetences;
-//    private int competencesValidees;
-//    private double pourcentageGlobal;
-//
-//
-//}
+import java.util.List;
+@Data
 public class CompetenceDashboardDTO {
     private String competenceName;
     private boolean acquired;

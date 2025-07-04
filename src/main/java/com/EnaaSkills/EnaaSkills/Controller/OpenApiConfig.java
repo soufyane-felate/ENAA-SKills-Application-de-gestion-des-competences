@@ -14,8 +14,8 @@ public class OpenApiConfig {
                 .info(new Info()
                         .title("EnaaSkills API")
                         .version("1.0")
-                        .description("API de gestion des compétences et sous-compétences")
-                        .contact(new Contact().name("soufyane").email("soufyane@.com")));
+                        .description("API de gestion des competences et sous-competences")
+                        .contact(new Contact().name("soufyane").email("soufyanfellat03@gamil.com")));
     }
 }
 

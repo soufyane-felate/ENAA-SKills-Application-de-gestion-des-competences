@@ -9,26 +9,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-
 @Service
 public class CompetenceService {
     @Autowired
     private CompetenceRepository competenceRepository;
 
-//    public Competence createCompetence(Competence competence) {
-//        return competenceRepository.save(competence);
-//    }
     public Competence createCompetence(Competence competence) {
         for (SubCompetence sc : competence.getSubCompetences()) {
-            sc.setCompetence(competence );
+            sc.setCompetence(competence);
         }
         return competenceRepository.save(competence);
     }
+
     public Competence getCompetenceById(Long id) {
         return competenceRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Competence not found : " + id
-                ));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Competence not found: " + id));
     }
 
     public List<Competence> getAllCompetences() {
@@ -42,8 +37,20 @@ public class CompetenceService {
         }).orElseThrow();
     }
 
-
     public void deleteCompetence(Long id) {
         competenceRepository.deleteById(id);
+    }
+
+    public Competence updateCompetenceValidation(Long competenceId) {
+        Competence competence = getCompetenceById(competenceId);
+
+        List<SubCompetence> subCompetences = competence.getSubCompetences();
+
+        long validatedCount = subCompetences.stream().filter(SubCompetence::isValidated).count();
+        long totalCount = subCompetences.size();
+
+        competence.setValidated(totalCount > 0 && validatedCount * 2 >= totalCount);
+
+        return competenceRepository.save(competence);
     }
 }
