@@ -43,14 +43,12 @@ public class CompetenceService {
 
     public Competence updateCompetenceValidation(Long competenceId) {
         Competence competence = getCompetenceById(competenceId);
-
         List<SubCompetence> subCompetences = competence.getSubCompetences();
-
         long validatedCount = subCompetences.stream().filter(SubCompetence::isValidated).count();
         long totalCount = subCompetences.size();
-
-        competence.setValidated(totalCount > 0 && validatedCount * 2 >= totalCount);
-
+        competence.setValidated((totalCount > 0) && (validatedCount * 2 >= totalCount));
         return competenceRepository.save(competence);
     }
+
+
 }

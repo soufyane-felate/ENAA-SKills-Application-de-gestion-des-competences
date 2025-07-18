@@ -86,4 +86,6 @@ public class CompetenceController {
         excelExportService.exportCompetencesToExcel(competences, response.getOutputStream());
     }
 
+
+
 }

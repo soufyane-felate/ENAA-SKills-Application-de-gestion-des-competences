@@ -20,6 +20,7 @@ public class Competence {
     private String description;
     private boolean validated;
     private String name;
+    private String test;
 
   @JsonIgnore
     @OneToMany(mappedBy = "competence", cascade = CascadeType.ALL, orphanRemoval = true)

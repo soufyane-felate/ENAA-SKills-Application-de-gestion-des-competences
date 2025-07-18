@@ -29,7 +29,7 @@ public class ExcelExportService {
             headerStyle.setFont(font);
 
             Row headerRow = sheet.createRow(0);
-            String[] headers = {"Competence id", "Soub-Competence id ", "Competence name", "Soub-Competence name", "description"};
+            String[] headers = {"Competence id", "Soub-Competence id ", "Competence name", "Soub-Competence name", "description","validated"};
             for (int i = 0; i < headers.length; i++) {
                 Cell cell = headerRow.createCell(i);
                 cell.setCellValue(headers[i]);
@@ -46,6 +46,7 @@ public class ExcelExportService {
                         row.createCell(2).setCellValue(competence.getName());
                         row.createCell(3).setCellValue(sousCompetence.getName());
                         row.createCell(4).setCellValue(competence.getDescription());
+                       // row.createCell(5).setCellValue(competence.getValidated());
                     }
                 } else {
                     Row row = sheet.createRow(rowNum++);
